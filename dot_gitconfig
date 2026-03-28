@@ -1,0 +1,17 @@
+[user]
+	signingkey = 3934970EDF71D5D3
+	name = tinque
+	email = quentin.georget@gmail.com
+	useConfigOnly = true
+[commit]
+	gpgSign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[tag]
+	gpgSign = true
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[push]
+	autoSetupRemote = true

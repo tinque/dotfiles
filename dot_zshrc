@@ -1,62 +1,72 @@
-# GPG configuration
-export GPG_TTY=$(tty)
-gpgconf --launch gpg-agent
+# ── History ──────────────────────────────────────────────
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-#### Python package and pipx
-export PATH=$HOME/Library/Python/3.9/bin:/Users/quentin/.local/bin:$PATH
-
-#Autocomplet pipx
-eval "$(register-python-argcomplete pipx)"
-if [ -f "/Users/quentin/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/quentin/.config/fabric/fabric-bootstrap.inc"; fi
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terragrunt terragrunt
-
-## homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export PATH="/opt/homebrew/bin:$PATH"
-
-## java openjdk
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-## golang
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-
-# launch starthip
-eval "$(starship init zsh)"
-
-# Active la recherche incrémentale dans l'historique avec les flèches ↑ ↓
+# ── Keybindings ─────────────────────────────────────────
+bindkey -e
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
-# autosuggestions
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# syntax highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-#git completion
+# ── Completion ──────────────────────────────────────────
+autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-alias gbgD="git fetch -p &&  git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -D"
-alias gbgd="git fetch -p &&  git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -d"
 
+# ── GPG ─────────────────────────────────────────────────
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
 
-# Added by Antigravity
-export PATH="/Users/quentin/.antigravity/antigravity/bin:$PATH"
+# ── Homebrew ────────────────────────────────────────────
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# opencode
-export PATH=/Users/quentin/.opencode/bin:$PATH
+# ── Languages & runtimes ────────────────────────────────
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
+# Go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# Python / pipx
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(register-python-argcomplete pipx)"
+
+# Java
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# ── Tools ───────────────────────────────────────────────
+# Terragrunt
+complete -o nospace -C /opt/homebrew/bin/terragrunt terragrunt
+
+# Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Fabric
+[ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ] && . "$HOME/.config/fabric/fabric-bootstrap.inc"
+
+# ── Editor ──────────────────────────────────────────────
 export EDITOR="nvim"
 
-# Force standard UNIX keybindings (emacs mode)
-bindkey -e
+# ── Plugins (must be last) ──────────────────────────────
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Explicit bindings (safety)
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
+# ── Prompt (must be after plugins) ──────────────────────
+eval "$(starship init zsh)"
+
+# ── Aliases ─────────────────────────────────────────────
+alias gbgD="git fetch -p && git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -D"
+alias gbgd="git fetch -p && git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -d"
