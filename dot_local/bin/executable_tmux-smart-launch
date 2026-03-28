@@ -1,9 +1,12 @@
 #!/bin/sh
-# Smart tmux launcher for WezTerm
-# - First window: creates persistent "main" session
-# - Subsequent windows: create independent sessions
-if ! /opt/homebrew/bin/tmux has-session 2>/dev/null; then
-  exec /opt/homebrew/bin/tmux new-session -s main
-else
-  exec /opt/homebrew/bin/tmux new-session
+TMUX_BIN=/opt/homebrew/bin/tmux
+
+if ! "$TMUX_BIN" has-session -t main 2>/dev/null; then
+  exec "$TMUX_BIN" new-session -s main
 fi
+
+if [ "$("$TMUX_BIN" display-message -p -t main "#{session_attached}" 2>/dev/null)" = "0" ]; then
+  exec "$TMUX_BIN" attach-session -t main
+fi
+
+exec "$TMUX_BIN" new-session
