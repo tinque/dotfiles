@@ -4,11 +4,6 @@
 .config/opencode/profiles/*/node_modules
 .config/opencode/profiles/*/bun.lock
 
-# Secrets — JAMAIS dans le repo
-.config/opencode/secrets
-.config/opencode/antigravity-accounts.json
-.config/opencode/profiles/*/antigravity-accounts.json
-
 # Sessions opencode (runtime)
 .config/opencode/sessions
 
