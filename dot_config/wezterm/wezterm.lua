@@ -61,7 +61,8 @@ table.insert(config.hyperlink_rules, {
 })
 
 -- ── Tmux auto-launch ──────────────────────────────────
-config.default_prog = { '/opt/homebrew/bin/tmux', 'new-session', '-A', '-s', 'main' }
+-- Smart launch: first window → "main" session, subsequent → independent sessions
+config.default_prog = { '/Users/quentin/.local/bin/tmux-smart-launch' }
 
 -- ── Keyboard ──────────────────────────────────────────
 config.send_composed_key_when_left_alt_is_pressed = true
