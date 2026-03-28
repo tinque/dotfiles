@@ -71,5 +71,20 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(starship init zsh)"
 
 # ── Aliases ─────────────────────────────────────────────
-alias gbgD="git fetch -p && git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -D"
-alias gbgd="git fetch -p && git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -d"
+gbgD() {
+  git fetch -p || return 1
+  git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -D
+}
+
+gbgd() {
+  git fetch -p || return 1
+  git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -d
+}
+
+gsync() {
+  local branch="${1:-main}"
+
+  git fetch -p || return 1
+  git checkout "$branch" || return 1
+  git pull --ff-only || return 1
+}
