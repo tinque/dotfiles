@@ -1,0 +1,21 @@
+gui:
+  nerdFontsVersion: "3"
+  showBottomLine: false
+  showPanelJumps: false
+  theme:
+    activeBorderColor:
+      - "#c6a0f6"
+      - bold
+    inactiveBorderColor:
+      - "#555555"
+    selectedLineBgColor:
+      - "#3c3836"
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
+os:
+  editPreset: "nvim"
