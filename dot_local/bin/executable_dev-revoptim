@@ -19,15 +19,26 @@ fi
 
 tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" -n editor
 tmux set-option -t "$SESSION:editor" automatic-rename off
+tmux rename-window -t "$SESSION:editor" editor
 tmux send-keys -t "$SESSION:editor" "nvim" Enter
 
 tmux new-window -t "$SESSION" -n agent -c "$PROJECT_DIR"
 tmux set-option -t "$SESSION:agent" automatic-rename off
+tmux rename-window -t "$SESSION:agent" agent
 tmux send-keys -t "$SESSION:agent" "ocx oc -p azure" Enter
 
 tmux new-window -t "$SESSION" -n webapp -c "$PROJECT_DIR"
 tmux set-option -t "$SESSION:webapp" automatic-rename off
+tmux rename-window -t "$SESSION:webapp" webapp
 tmux send-keys -t "$SESSION:webapp" "pnpm dev" Enter
+
+sleep 2
+tmux set-option -t "$SESSION:1" automatic-rename off
+tmux rename-window -t "$SESSION:1" editor
+tmux set-option -t "$SESSION:2" automatic-rename off
+tmux rename-window -t "$SESSION:2" agent
+tmux set-option -t "$SESSION:3" automatic-rename off
+tmux rename-window -t "$SESSION:3" webapp
 
 tmux select-window -t "$SESSION:editor"
 
