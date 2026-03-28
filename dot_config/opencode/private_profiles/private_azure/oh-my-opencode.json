@@ -1,0 +1,83 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "azure-custom/kimi-k2.5"
+    },
+    "hephaestus": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "oracle": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "high"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high"
+    },
+    "explore": {
+      "model": "azure-cognitive-services/gpt-5-nano",
+      "variant": "high"
+    },
+    "multimodal-looker": {
+      "model": "azure-cognitive-services/gpt-5.3-codex"
+    },
+    "prometheus": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "high"
+    },
+    "metis": {
+      "model": "azure-cognitive-services/gpt-5.4"
+    },
+    "momus": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "high"
+    },
+    "atlas": {
+      "model": "azure-cognitive-services/gpt-5.4"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high"
+    },
+    "ultrabrain": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "deep": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high"
+    },
+    "quick": {
+      "model": "azure-cognitive-services/gpt-5-nano",
+      "variant": "high"
+    },
+    "unspecified-low": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "unspecified-high": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "high"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3-flash"
+    }
+  },
+  "git_master": { "commit_footer": false, "include_co_authored_by": false },
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60,
+    "main_pane_min_width": 120,
+    "agent_pane_min_width": 40
+  }
+}
+

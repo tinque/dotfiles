@@ -1,0 +1,62 @@
+# GPG configuration
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
+
+# NVM configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+#### Python package and pipx
+export PATH=$HOME/Library/Python/3.9/bin:/Users/quentin/.local/bin:$PATH
+
+#Autocomplet pipx
+eval "$(register-python-argcomplete pipx)"
+if [ -f "/Users/quentin/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/quentin/.config/fabric/fabric-bootstrap.inc"; fi
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terragrunt terragrunt
+
+## homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/bin:$PATH"
+
+## java openjdk
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+## golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+# launch starthip
+eval "$(starship init zsh)"
+
+# Active la recherche incrémentale dans l'historique avec les flèches ↑ ↓
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
+# autosuggestions
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#git completion
+autoload -Uz compinit && compinit
+alias gbgD="git fetch -p &&  git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -D"
+alias gbgd="git fetch -p &&  git branch -vv | awk '/: gone]/{print \$1}' | xargs -n 1 git branch -d"
+
+
+# Added by Antigravity
+export PATH="/Users/quentin/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/quentin/.opencode/bin:$PATH
+
+export EDITOR="nvim"
+
+# Force standard UNIX keybindings (emacs mode)
+bindkey -e
+
+# Explicit bindings (safety)
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line

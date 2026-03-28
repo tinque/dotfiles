@@ -1,0 +1,21 @@
+# Fichiers générés par les package managers
+.config/opencode/node_modules
+.config/opencode/bun.lock
+.config/opencode/profiles/*/node_modules
+.config/opencode/profiles/*/bun.lock
+
+# Secrets — JAMAIS dans le repo
+.config/opencode/secrets
+.config/opencode/antigravity-accounts.json
+.config/opencode/profiles/*/antigravity-accounts.json
+
+# Sessions opencode (runtime)
+.config/opencode/sessions
+
+# Superpowers (repo git séparé, géré via oh-my-opencode)
+.config/opencode/superpowers
+
+# Nvim — fichiers générés
+.config/nvim/lazy-lock.json
+.config/nvim/LICENSE
+.config/nvim/README.md

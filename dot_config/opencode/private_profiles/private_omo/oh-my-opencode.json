@@ -1,0 +1,85 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "amazon-bedrock/anthropic.claude-opus-4-6-v1",
+      "variant": "max"
+    },
+    "hephaestus": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "oracle": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "high"
+    },
+    "librarian": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high"
+    },
+    "explore": {
+      "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
+      "variant": "high"
+    },
+    "multimodal-looker": {
+      "model": "azure-cognitive-services/gpt-5.3-codex"
+    },
+    "prometheus": {
+      "model": "amazon-bedrock/anthropic.claude-opus-4-6-v1",
+      "variant": "max"
+    },
+    "metis": {
+      "model": "amazon-bedrock/anthropic.claude-opus-4-6-v1",
+      "variant": "max"
+    },
+    "momus": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "high"
+    },
+    "atlas": {
+      "model": "amazon-bedrock/anthropic.claude-sonnet-4-6"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high"
+    },
+    "ultrabrain": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "deep": {
+      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "variant": "high"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3.1-pro",
+      "variant": "high"
+    },
+    "quick": {
+      "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
+      "variant": "max"
+    },
+    "unspecified-low": {
+      "model": "amazon-bedrock/anthropic.claude-sonnet-4-6",
+      "variant": "max"
+    },
+    "unspecified-high": {
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "max"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3-flash"
+    }
+  },
+  "git_master": { "commit_footer": false, "include_co_authored_by": false },
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical",
+    "main_pane_size": 60,
+    "main_pane_min_width": 120,
+    "agent_pane_min_width": 40
+  }
+}
+
