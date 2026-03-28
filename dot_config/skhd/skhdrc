@@ -1,1 +1,1 @@
-cmd + alt - return : open -a WezTerm
+cmd + alt - return : open -na WezTerm
