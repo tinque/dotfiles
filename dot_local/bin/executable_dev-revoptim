@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SESSION="revoptim"
+PROJECT_DIR="$HOME/billabex/website/revoptim"
+
+if [ ! -d "$PROJECT_DIR" ]; then
+  echo "Error: $PROJECT_DIR does not exist" >&2
+  exit 1
+fi
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  if [ -n "${TMUX:-}" ]; then
+    exec tmux switch-client -t "$SESSION"
+  else
+    exec tmux attach-session -t "$SESSION"
+  fi
+fi
+
+tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" -n editor
+tmux set-option -t "$SESSION:editor" automatic-rename off
+tmux send-keys -t "$SESSION:editor" "nvim" Enter
+
+tmux new-window -t "$SESSION" -n agent -c "$PROJECT_DIR"
+tmux set-option -t "$SESSION:agent" automatic-rename off
+tmux send-keys -t "$SESSION:agent" "ocx oc -p azure" Enter
+
+tmux new-window -t "$SESSION" -n webapp -c "$PROJECT_DIR"
+tmux set-option -t "$SESSION:webapp" automatic-rename off
+tmux send-keys -t "$SESSION:webapp" "pnpm dev" Enter
+
+tmux select-window -t "$SESSION:editor"
+
+if [ -n "${TMUX:-}" ]; then
+  exec tmux switch-client -t "$SESSION"
+else
+  exec tmux attach-session -t "$SESSION"
+fi
