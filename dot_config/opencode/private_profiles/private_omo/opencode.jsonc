@@ -8,6 +8,6 @@
   },
   "plugin": [
     "oh-my-opencode@latest",
-    "opencode-antigravity-auth@1.5.5"
+    "opencode-antigravity-auth@latest"
   ]
 }

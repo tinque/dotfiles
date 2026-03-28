@@ -190,6 +190,6 @@
     }
   },
   "plugin": [
-    "opencode-antigravity-auth@1.6.0"
+    "opencode-antigravity-auth@latest"
   ]
 }
