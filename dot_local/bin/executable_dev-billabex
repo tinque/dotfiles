@@ -5,6 +5,10 @@ set -euo pipefail
 SESSION="billabex"
 PROJECT_DIR="$HOME/billabex/dev"
 
+session_is_expected() {
+  [ "$(tmux list-windows -t "$SESSION" -F '#{window_name}' 2>/dev/null)" = $'editor\nagent\napi\nwebapp' ]
+}
+
 # ── Preflight ─────────────────────────────────────────────────
 if [ ! -d "$PROJECT_DIR" ]; then
   echo "Error: $PROJECT_DIR does not exist" >&2
@@ -13,28 +17,58 @@ fi
 
 # Reattach if session already exists
 if tmux has-session -t "$SESSION" 2>/dev/null; then
-  if [ -n "${TMUX:-}" ]; then
-    exec tmux switch-client -t "$SESSION"
-  else
-    exec tmux attach-session -t "$SESSION"
+  if session_is_expected; then
+    tmux set-option -t "$SESSION:1" automatic-rename off 2>/dev/null || true
+    tmux rename-window -t "$SESSION:1" editor 2>/dev/null || true
+    tmux set-option -t "$SESSION:2" automatic-rename off 2>/dev/null || true
+    tmux rename-window -t "$SESSION:2" agent 2>/dev/null || true
+    tmux set-option -t "$SESSION:3" automatic-rename off 2>/dev/null || true
+    tmux rename-window -t "$SESSION:3" api 2>/dev/null || true
+    tmux set-option -t "$SESSION:4" automatic-rename off 2>/dev/null || true
+    tmux rename-window -t "$SESSION:4" webapp 2>/dev/null || true
+    if [ -n "${TMUX:-}" ]; then
+      exec tmux switch-client -t "$SESSION"
+    else
+      exec tmux attach-session -t "$SESSION"
+    fi
   fi
+
+  tmux kill-session -t "$SESSION"
 fi
 
 # ── Window 1: Editor ──────────────────────────────────────────
 tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" -n editor
+tmux set-option -t "$SESSION:editor" automatic-rename off
+tmux rename-window -t "$SESSION:editor" editor
 tmux send-keys -t "$SESSION:editor" "nvim" Enter
 
 # ── Window 2: Agent ───────────────────────────────────────────
 tmux new-window -t "$SESSION" -n agent -c "$PROJECT_DIR"
+tmux set-option -t "$SESSION:agent" automatic-rename off
+tmux rename-window -t "$SESSION:agent" agent
 tmux send-keys -t "$SESSION:agent" "ocx oc -p omo" Enter
 
 # ── Window 3: API ─────────────────────────────────────────────
 tmux new-window -t "$SESSION" -n api -c "$PROJECT_DIR"
+tmux set-option -t "$SESSION:api" automatic-rename off
+tmux rename-window -t "$SESSION:api" api
 tmux send-keys -t "$SESSION:api" "pnpm nx serve api" Enter
 
 # ── Window 4: Webapp ──────────────────────────────────────────
 tmux new-window -t "$SESSION" -n webapp -c "$PROJECT_DIR"
+tmux set-option -t "$SESSION:webapp" automatic-rename off
+tmux rename-window -t "$SESSION:webapp" webapp
 tmux send-keys -t "$SESSION:webapp" "pnpm nx dev webapp" Enter
+
+sleep 2
+tmux set-option -t "$SESSION:1" automatic-rename off
+tmux rename-window -t "$SESSION:1" editor
+tmux set-option -t "$SESSION:2" automatic-rename off
+tmux rename-window -t "$SESSION:2" agent
+tmux set-option -t "$SESSION:3" automatic-rename off
+tmux rename-window -t "$SESSION:3" api
+tmux set-option -t "$SESSION:4" automatic-rename off
+tmux rename-window -t "$SESSION:4" webapp
 
 # ── Focus & attach ────────────────────────────────────────────
 tmux select-window -t "$SESSION:editor"
