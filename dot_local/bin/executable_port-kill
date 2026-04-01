@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+lsof -ti:"$1" | xargs kill -9
