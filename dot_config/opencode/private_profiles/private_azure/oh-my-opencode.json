@@ -5,8 +5,8 @@
       "model": "azure-custom/kimi-k2.5"
     },
     "hephaestus": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "medium"
     },
     "oracle": {
       "model": "azure-cognitive-services/gpt-5.4",
@@ -32,43 +32,43 @@
     },
     "momus": {
       "model": "azure-cognitive-services/gpt-5.4",
-      "variant": "high"
+      "variant": "xhigh"
     },
     "atlas": {
       "model": "azure-cognitive-services/gpt-5.4"
-    }
+    },
+    "sisyphus-junior": { "model": "azure-custom/kimi-k2.5" }
   },
   "categories": {
     "visual-engineering": {
-      "model": "google/antigravity-gemini-3.1-pro",
+      "model": "google-vertex/gemini-3.1-pro-preview",
       "variant": "high"
     },
     "ultrabrain": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "xhigh"
     },
     "deep": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "medium"
     },
     "artistry": {
-      "model": "google/antigravity-gemini-3.1-pro",
+      "model": "google-vertex/gemini-3.1-pro-preview",
       "variant": "high"
     },
     "quick": {
-      "model": "azure-cognitive-services/gpt-5-nano",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4-mini"
     },
     "unspecified-low": {
       "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "variant": "medium"
     },
     "unspecified-high": {
       "model": "azure-cognitive-services/gpt-5.4",
       "variant": "high"
     },
     "writing": {
-      "model": "google/antigravity-gemini-3-flash"
+      "model": "google-vertex/gemini-3-flash-preview"
     }
   },
   "git_master": { "commit_footer": false, "include_co_authored_by": false },
@@ -80,4 +80,3 @@
     "agent_pane_min_width": 40
   }
 }
-

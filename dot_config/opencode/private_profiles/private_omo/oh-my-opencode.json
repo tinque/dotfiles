@@ -6,8 +6,8 @@
       "variant": "max"
     },
     "hephaestus": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "medium"
     },
     "oracle": {
       "model": "azure-cognitive-services/gpt-5.4",
@@ -34,43 +34,42 @@
     },
     "momus": {
       "model": "azure-cognitive-services/gpt-5.4",
-      "variant": "high"
+      "variant": "xhigh"
     },
     "atlas": {
       "model": "amazon-bedrock/anthropic.claude-sonnet-4-6"
-    }
+    },
+    "sisyphus-junior": { "model": "amazon-bedrock/anthropic.claude-sonnet-4-6" }
   },
   "categories": {
     "visual-engineering": {
-      "model": "google/antigravity-gemini-3.1-pro",
+      "model": "google-vertex/gemini-3.1-pro-preview",
       "variant": "high"
     },
     "ultrabrain": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "xhigh"
     },
     "deep": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5.4",
+      "variant": "medium"
     },
     "artistry": {
       "model": "google/antigravity-gemini-3.1-pro",
       "variant": "high"
     },
     "quick": {
-      "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
-      "variant": "max"
+      "model": "azure-cognitive-services/gpt-5.4-mini"
     },
     "unspecified-low": {
-      "model": "amazon-bedrock/anthropic.claude-sonnet-4-6",
-      "variant": "max"
+      "model": "amazon-bedrock/anthropic.claude-sonnet-4-6"
     },
     "unspecified-high": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "amazon-bedrock/anthropic.claude-opus-4-6-v1",
       "variant": "max"
     },
     "writing": {
-      "model": "google/antigravity-gemini-3-flash"
+      "model": "google-vertex/gemini-3-flash-preview"
     }
   },
   "git_master": { "commit_footer": false, "include_co_authored_by": false },
@@ -82,4 +81,3 @@
     "agent_pane_min_width": 40
   }
 }
-
