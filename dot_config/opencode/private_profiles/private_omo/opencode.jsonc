@@ -6,8 +6,6 @@
     "mdns": true,
     "mdnsDomain": "omo.local"
   },
-  "plugin": [
-    "oh-my-opencode@latest",
-    "opencode-antigravity-auth@latest"
-  ]
+  "plugin": ["oh-my-opencode@latest"]
 }
+
