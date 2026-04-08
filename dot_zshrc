@@ -60,6 +60,10 @@ export PATH="$HOME/.opencode/bin:$PATH"
 # Fabric
 [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ] && . "$HOME/.config/fabric/fabric-bootstrap.inc"
 
+# PostgreSQL
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+
 # ── Editor ──────────────────────────────────────────────
 export EDITOR="nvim"
 
@@ -88,3 +92,8 @@ gsync() {
   git checkout "$branch" || return 1
   git pull --ff-only || return 1
 }
+
+# >>> opentmux >>>
+export OPENCODE_PORT=4096
+alias opencode='opentmux'
+# <<< opentmux <<<
