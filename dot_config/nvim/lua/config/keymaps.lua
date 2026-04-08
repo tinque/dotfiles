@@ -17,3 +17,12 @@ end, { desc = "Git sync next" })
 vim.keymap.set("n", "<leader>gD", function()
   run_in_terminal([[zsh -lc 'gbgD']])
 end, { desc = "Git delete gone branches" })
+
+-- ── AZERTY-friendly navigation (avoid painful [ ] brackets) ──
+vim.keymap.set("n", "<leader>dn", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Next Diagnostic" })
+
+vim.keymap.set("n", "<leader>dN", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Prev Diagnostic" })
