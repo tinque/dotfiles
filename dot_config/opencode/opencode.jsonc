@@ -87,5 +87,5 @@
       "enabled": false,
     },
   },
-  "plugin": ["opentmux", "@tarquinen/opencode-dcp"],
+  "plugin": [],
 }
