@@ -1,7 +1,7 @@
 gui:
   nerdFontsVersion: "3"
   showBottomLine: false
-  showPanelJumps: false
+  showPanelJumps: true
   theme:
     activeBorderColor:
       - "#c6a0f6"
@@ -11,9 +11,9 @@ gui:
     selectedLineBgColor:
       - "#3c3836"
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
   autoFetch: true
   autoRefresh: true
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
