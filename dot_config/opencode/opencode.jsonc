@@ -99,5 +99,5 @@
       ],
     },
   },
-  "plugin": [],
+  "plugin": ["opentmux"],
 }

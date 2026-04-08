@@ -13,8 +13,7 @@
       "variant": "high"
     },
     "librarian": {
-      "model": "google/antigravity-gemini-3-flash",
-      "variant": "high"
+      "model": "google-vertex/gemini-flash-latest"
     },
     "explore": {
       "model": "azure-cognitive-services/gpt-5-nano",
@@ -41,8 +40,7 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "google-vertex/gemini-3.1-pro-preview",
-      "variant": "high"
+      "model": "google-vertex/gemini-3.1-pro-preview"
     },
     "ultrabrain": {
       "model": "azure-cognitive-services/gpt-5.4",
@@ -53,8 +51,7 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "google-vertex/gemini-3.1-pro-preview",
-      "variant": "high"
+      "model": "google-vertex/gemini-3.1-pro-preview"
     },
     "quick": {
       "model": "azure-cognitive-services/gpt-5.4-mini"
@@ -73,10 +70,6 @@
   },
   "git_master": { "commit_footer": false, "include_co_authored_by": false },
   "tmux": {
-    "enabled": true,
-    "layout": "main-vertical",
-    "main_pane_size": 60,
-    "main_pane_min_width": 120,
-    "agent_pane_min_width": 40
+    "enabled": false
   }
 }
