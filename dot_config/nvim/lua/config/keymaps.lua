@@ -7,15 +7,15 @@ local function run_in_terminal(command)
 end
 
 vim.keymap.set("n", "<leader>gm", function()
-  run_in_terminal([[zsh -lc 'gsync main']])
+  run_in_terminal([[zsh -lic 'gsync main']])
 end, { desc = "Git sync main" })
 
 vim.keymap.set("n", "<leader>gn", function()
-  run_in_terminal([[zsh -lc 'gsync next']])
+  run_in_terminal([[zsh -lic 'gsync next']])
 end, { desc = "Git sync next" })
 
 vim.keymap.set("n", "<leader>gD", function()
-  run_in_terminal([[zsh -lc 'gbgD']])
+  run_in_terminal([[zsh -lic 'gbgD']])
 end, { desc = "Git delete gone branches" })
 
 -- ── AZERTY-friendly navigation (avoid painful [ ] brackets) ──
