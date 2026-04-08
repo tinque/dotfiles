@@ -50,14 +50,17 @@
     "figma": {
       "type": "remote",
       "url": "http://127.0.0.1:3845/mcp",
+      "enabled": false,
     },
     "linear": {
       "type": "remote",
       "url": "https://mcp.linear.app/mcp",
+      "enabled": false,
     },
     "langsmith": {
       "type": "remote",
       "url": "https://langsmith-mcp-server.onrender.com/mcp",
+      "enabled": false,
       "oauth": false,
       "headers": {
         "LANGSMITH-API-KEY": "{file:~/.config/opencode/secrets/langsmith_api_key}",
@@ -69,6 +72,7 @@
       "headers": {
         "Authorization": "Bearer {file:~/.config/opencode/secrets/github_mcp_token}",
       },
+      "enabled": false,
     },
     "chrome-devtools": {
       "type": "local",
@@ -80,6 +84,7 @@
         "--experimentalScreencast",
         "--autoConnect",
       ],
+      "enabled": false,
     },
   },
   "plugin": ["opentmux"],
