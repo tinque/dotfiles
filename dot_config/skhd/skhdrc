@@ -1,1 +1,8 @@
+# Open WezTerm
 cmd + alt - return : open -na WezTerm
+
+# Flameshot screenshots (keycodes for AZERTY compatibility)
+# 0x14 = physical "3" key, 0x15 = "4" key, 0x17 = "5" key
+cmd + shift - 0x14 : /Applications/flameshot.app/Contents/MacOS/flameshot full --clipboard
+cmd + shift - 0x15 : /Applications/flameshot.app/Contents/MacOS/flameshot gui --clipboard
+cmd + shift - 0x17 : /Applications/flameshot.app/Contents/MacOS/flameshot launcher
