@@ -9,7 +9,7 @@ return {
             list = {
               keys = {
                 ["gp"] = {
-                  function(picker)
+                  function(self)
                     if vim.fn.executable("pngpaste") ~= 1 then
                       Snacks.notify.error("pngpaste not found. Install with: brew install pngpaste")
                       return
@@ -21,7 +21,20 @@ return {
                       return
                     end
 
+                    local pickers = Snacks.picker.get({ source = "explorer" })
+                    local picker = pickers and pickers[1]
+                    if not picker then
+                      Snacks.notify.error("Explorer picker not found")
+                      return
+                    end
+
                     local dir = picker:dir()
+                    local item = picker:current()
+                    if not dir and item and item.dir then
+                      dir = item.file
+                    elseif not dir and item then
+                      dir = vim.fs.dirname(item.file)
+                    end
                     if not dir then
                       Snacks.notify.error("Cannot determine current directory")
                       return
@@ -38,7 +51,6 @@ return {
 
                     local Tree = require("snacks.explorer.tree")
                     Tree:refresh(dir)
-                    require("snacks.explorer.actions").update(picker, { target = filepath })
                     Snacks.notify.info("Saved: " .. filename)
                   end,
                   desc = "Paste clipboard image",
