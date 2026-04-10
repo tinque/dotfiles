@@ -26,3 +26,14 @@ end, { desc = "Next Diagnostic" })
 vim.keymap.set("n", "<leader>dN", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Prev Diagnostic" })
+
+-- ── Git stage/unstage current file ──
+vim.keymap.set("n", "<leader>ga", function()
+  vim.cmd("silent !git add " .. vim.fn.shellescape(vim.fn.expand("%")))
+  vim.notify("Staged: " .. vim.fn.expand("%:t"), vim.log.levels.INFO)
+end, { desc = "Git Add (stage file)" })
+
+vim.keymap.set("n", "<leader>gu", function()
+  vim.cmd("silent !git restore --staged " .. vim.fn.shellescape(vim.fn.expand("%")))
+  vim.notify("Unstaged: " .. vim.fn.expand("%:t"), vim.log.levels.INFO)
+end, { desc = "Git Unstage file" })
