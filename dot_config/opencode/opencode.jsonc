@@ -20,7 +20,7 @@
       "name": "Azure Custom",
       "options": {
         "baseURL": "https://coding-billabex-eastus2.openai.azure.com/openai/v1",
-        "useCompletionUrls": true
+        "useCompletionUrls": true,
       },
       "models": {
         "kimi-k2.5": {
@@ -86,8 +86,23 @@
       ],
       "enabled": false,
     },
+    "google-analytics": {
+      "type": "local",
+      "command": ["/Users/quentin/.local/bin/analytics-mcp"],
+      "environment": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "{file:~/.config/opencode/secrets/google_adc_credentials_path}",
+        "GOOGLE_PROJECT_ID": "{file:~/.config/opencode/secrets/google_project_id}",
+      },
+      "enabled": false,
+    },
+    "seo-analytics": {
+      "type": "local",
+      "command": [
+        "bash",
+        "/Users/quentin/.local/share/mcp-servers/seo-analytics/run-local.sh",
+      ],
+      "enabled": false,
+    },
   },
-  "plugin": [
-    "@tarquinen/opencode-dcp@latest"
-  ],
+  "plugin": ["@tarquinen/opencode-dcp@latest"],
 }
