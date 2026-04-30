@@ -2,8 +2,6 @@
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
     "oh-my-openagent@latest",
-    "opentmux@latest",
-    "@tarquinen/opencode-dcp@latest"
+    "opentmux@latest"
   ]
 }
-
