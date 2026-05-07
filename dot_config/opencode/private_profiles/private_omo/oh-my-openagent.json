@@ -6,11 +6,11 @@
       "variant": "max"
     },
     "hephaestus": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "medium"
     },
     "oracle": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "high"
     },
     "librarian": {
@@ -32,7 +32,7 @@
       "variant": "max"
     },
     "momus": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "xhigh"
     },
     "atlas": {
@@ -45,11 +45,11 @@
       "model": "google-vertex/gemini-3.1-pro-preview"
     },
     "ultrabrain": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "medium"
     },
     "artistry": {
