@@ -4,4 +4,6 @@ Host nas 192.168.1.10
   HostName 192.168.1.10
   Port 2222
   User tinque
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
   SetEnv TERM=xterm-256color
