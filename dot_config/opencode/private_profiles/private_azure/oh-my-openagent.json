@@ -13,14 +13,15 @@
       "variant": "high"
     },
     "librarian": {
-      "model": "google-vertex/gemini-flash-latest"
+      "model": "azure-cognitive-services/gpt-5-nano"
     },
     "explore": {
       "model": "azure-cognitive-services/gpt-5-nano",
       "variant": "high"
     },
     "multimodal-looker": {
-      "model": "azure-cognitive-services/gpt-5.3-codex"
+      "model": "azure-cognitive-services/gpt-5.5",
+      "variant": "medium"
     },
     "prometheus": {
       "model": "azure-cognitive-services/gpt-5.5",
@@ -34,7 +35,7 @@
       "variant": "xhigh"
     },
     "atlas": {
-      "model": "azure-cognitive-services/gpt-5.5"
+      "model": "azure-custom/kimi-k2.6"
     },
     "sisyphus-junior": { "model": "azure-custom/kimi-k2.6" }
   },
