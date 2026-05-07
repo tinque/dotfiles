@@ -2,14 +2,14 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "azure-custom/kimi-k2.5"
+      "model": "azure-custom/kimi-k2.6"
     },
     "hephaestus": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "medium"
     },
     "oracle": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "high"
     },
     "librarian": {
@@ -23,31 +23,31 @@
       "model": "azure-cognitive-services/gpt-5.3-codex"
     },
     "prometheus": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "high"
     },
     "metis": {
-      "model": "azure-cognitive-services/gpt-5.4"
+      "model": "azure-cognitive-services/gpt-5.5"
     },
     "momus": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "xhigh"
     },
     "atlas": {
-      "model": "azure-cognitive-services/gpt-5.4"
+      "model": "azure-cognitive-services/gpt-5.5"
     },
-    "sisyphus-junior": { "model": "azure-custom/kimi-k2.5" }
+    "sisyphus-junior": { "model": "azure-custom/kimi-k2.6" }
   },
   "categories": {
     "visual-engineering": {
       "model": "google-vertex/gemini-3.1-pro-preview"
     },
     "ultrabrain": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "medium"
     },
     "artistry": {
@@ -61,7 +61,7 @@
       "variant": "medium"
     },
     "unspecified-high": {
-      "model": "azure-cognitive-services/gpt-5.4",
+      "model": "azure-cognitive-services/gpt-5.5",
       "variant": "high"
     },
     "writing": {
