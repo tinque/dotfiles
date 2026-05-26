@@ -87,7 +87,7 @@
       "headers": {
         "Authorization": "Bearer {file:~/.config/opencode/secrets/github_mcp_token}",
       },
-      "enabled": false,
+      "enabled": true,
     },
     "chrome-devtools": {
       "type": "local",
