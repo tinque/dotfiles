@@ -97,3 +97,4 @@ gsync() {
 export OPENCODE_PORT=4096
 alias opencode='opentmux'
 # <<< opentmux <<<
+export PATH="/opt/homebrew/opt/pnpm@10/bin:$PATH"
