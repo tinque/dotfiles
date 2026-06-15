@@ -1,0 +1,3 @@
+# Begin added by argcomplete
+fpath=( /opt/homebrew/share/zsh/site-functions "${fpath[@]}" )
+# End added by argcomplete
