@@ -16,8 +16,7 @@
       "model": "azure-cognitive-services/gpt-5-nano"
     },
     "explore": {
-      "model": "azure-cognitive-services/gpt-5-nano",
-      "variant": "high"
+      "model": "azure-cognitive-services/gpt-5-nano"
     },
     "multimodal-looker": {
       "model": "azure-cognitive-services/gpt-5.5",
@@ -41,7 +40,8 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "google-vertex/gemini-3.1-pro-preview"
+      "model": "google-vertex/gemini-3.1-pro-preview",
+      "variant": "high"
     },
     "ultrabrain": {
       "model": "azure-cognitive-services/gpt-5.5",
@@ -52,13 +52,14 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "google-vertex/gemini-3.1-pro-preview"
+      "model": "google-vertex/gemini-3.1-pro-preview",
+      "variant": "high"
     },
     "quick": {
       "model": "azure-cognitive-services/gpt-5.4-mini"
     },
     "unspecified-low": {
-      "model": "azure-cognitive-services/gpt-5.3-codex",
+      "model": "azure-custom/kimi-k2.6",
       "variant": "medium"
     },
     "unspecified-high": {
