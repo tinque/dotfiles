@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "amazon-bedrock/anthropic.claude-opus-4-7",
+      "model": "amazon-bedrock/anthropic.claude-opus-4-8",
       "variant": "max"
     },
     "hephaestus": {
@@ -17,19 +17,18 @@
       "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0"
     },
     "explore": {
-      "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0",
-      "variant": "high"
+      "model": "amazon-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0"
     },
     "multimodal-looker": {
       "model": "azure-cognitive-services/gpt-5.5",
       "variant": "medium"
     },
     "prometheus": {
-      "model": "amazon-bedrock/anthropic.claude-opus-4-7",
+      "model": "amazon-bedrock/anthropic.claude-opus-4-8",
       "variant": "max"
     },
     "metis": {
-      "model": "amazon-bedrock/anthropic.claude-opus-4-7",
+      "model": "amazon-bedrock/anthropic.claude-sonnet-4-6",
       "variant": "max"
     },
     "momus": {
@@ -43,7 +42,8 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "google-vertex/gemini-3.1-pro-preview"
+      "model": "google-vertex/gemini-3.1-pro-preview",
+      "variant": "high"
     },
     "ultrabrain": {
       "model": "azure-cognitive-services/gpt-5.5",
@@ -54,7 +54,8 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "google-vertex/gemini-3.1-pro-preview"
+      "model": "google-vertex/gemini-3.1-pro-preview",
+      "variant": "high"
     },
     "quick": {
       "model": "azure-cognitive-services/gpt-5.4-mini"
@@ -63,7 +64,7 @@
       "model": "amazon-bedrock/anthropic.claude-sonnet-4-6"
     },
     "unspecified-high": {
-      "model": "amazon-bedrock/anthropic.claude-opus-4-7",
+      "model": "amazon-bedrock/anthropic.claude-opus-4-8",
       "variant": "max"
     },
     "writing": {
