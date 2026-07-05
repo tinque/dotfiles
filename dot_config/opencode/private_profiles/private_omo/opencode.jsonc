@@ -3,5 +3,6 @@
   "plugin": [
     "oh-my-openagent@latest",
     "opentmux@latest"
-  ]
+  ],
+  "default_agent": "\u200bSisyphus - Ultraworker",
 }
