@@ -77,7 +77,7 @@
       "enabled": false,
       "oauth": false,
       "headers": {
-        "LANGSMITH-API-KEY": "{file:~/.config/opencode/secrets/langsmith_api_key}",
+        "LANGSMITH-API-KEY": "{file:~/.config/ai/secrets/langsmith_api_key}",
       },
     },
     "github": {
@@ -85,7 +85,7 @@
       "url": "https://api.githubcopilot.com/mcp/",
       "oauth": false,
       "headers": {
-        "Authorization": "Bearer {file:~/.config/opencode/secrets/github_mcp_token}",
+        "Authorization": "Bearer {file:~/.config/ai/secrets/github_mcp_token}",
       },
       "enabled": false,
     },
@@ -105,8 +105,8 @@
       "type": "local",
       "command": ["/Users/quentin/.local/bin/analytics-mcp"],
       "environment": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "{file:~/.config/opencode/secrets/google_adc_credentials_path}",
-        "GOOGLE_PROJECT_ID": "{file:~/.config/opencode/secrets/google_project_id}",
+        "GOOGLE_APPLICATION_CREDENTIALS": "{file:~/.config/ai/secrets/google_adc_credentials_path}",
+        "GOOGLE_PROJECT_ID": "{file:~/.config/ai/secrets/google_project_id}",
       },
       "enabled": false,
     },
@@ -117,6 +117,15 @@
         "/Users/quentin/.local/share/mcp-servers/seo-analytics/run-local.sh",
       ],
       "enabled": false,
+    },
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
     },
   },
   "plugin": ["opencode-agent-tmux"],
