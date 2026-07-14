@@ -1,0 +1,39 @@
+#!/bin/sh
+set -eu
+
+primary_secrets_dir="${AI_SECRETS_DIR:-$HOME/.config/ai/secrets}"
+legacy_secrets_dir="${OPENCODE_SECRETS_DIR:-$HOME/.config/opencode/secrets}"
+
+secret_file() {
+  name="$1"
+
+  if [ -r "$primary_secrets_dir/$name" ]; then
+    printf '%s\n' "$primary_secrets_dir/$name"
+    return 0
+  fi
+
+  if [ -r "$legacy_secrets_dir/$name" ]; then
+    printf '%s\n' "$legacy_secrets_dir/$name"
+    return 0
+  fi
+
+  return 1
+}
+
+if [ -z "${AZURE_OPENAI_API_KEY:-}" ]; then
+  if ! azure_key_file=$(secret_file azure_openai_api_key); then
+    printf '%s\n' "codex-azure: missing AZURE_OPENAI_API_KEY and Azure OpenAI key file" >&2
+    printf '%s\n' "codex-azure: create $primary_secrets_dir/azure_openai_api_key, pass AZURE_OPENAI_API_KEY for this command, or set AI_SECRETS_DIR" >&2
+    exit 1
+  fi
+
+  AZURE_OPENAI_API_KEY=$(cat "$azure_key_file")
+  export AZURE_OPENAI_API_KEY
+fi
+
+if [ -z "${GITHUB_MCP_TOKEN:-}" ] && github_token_file=$(secret_file github_mcp_token); then
+  GITHUB_MCP_TOKEN=$(cat "$github_token_file")
+  export GITHUB_MCP_TOKEN
+fi
+
+exec codex "$@"

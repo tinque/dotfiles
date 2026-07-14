@@ -1,0 +1,59 @@
+model = "gpt-5.6-sol"
+model_provider = "azure"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+approvals_reviewer = "user"
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[mcp_servers.exa]
+url = "https://mcp.exa.ai/mcp"
+
+[mcp_servers.gh_grep]
+url = "https://mcp.grep.app"
+
+[mcp_servers.github]
+url = "https://api.githubcopilot.com/mcp/"
+bearer_token_env_var = "GITHUB_MCP_TOKEN"
+
+[model_providers.azure]
+name = "Azure"
+base_url = "https://coding-billabex-eastus2.openai.azure.com/openai"
+env_key = "AZURE_OPENAI_API_KEY"
+query_params = { api-version = "2025-04-01-preview" }
+wire_api = "responses"
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."github@openai-curated-remote"]
+enabled = false
+
+[plugins."google-contacts@openai-curated-remote"]
+enabled = false
+
+[projects."/Users/quentin"]
+trust_level = "trusted"
+
+[projects."/Users/quentin/alk-innovations/trupeo"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 3
+"gpt-5.6-sol" = 4
+
+[hooks.state]
+
+[hooks.state."/Users/quentin/alk-innovations/trupeo/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:aa2acf4e03caf6961423c564117a5b5ab7a6230793c989b30abdff711ae9e718"
+
+[notice]
+hide_full_access_warning = true
+
+[mcp_servers.codegraph]
+command = "codegraph"
+args = ["serve", "--mcp"]
