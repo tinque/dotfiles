@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "mcp__codegraph__*"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./secrets/**)",
+      "Read(./**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.config/chezmoi/key.txt)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Read(./.aws/**)",
+      "Read(./.gcp/**)",
+      "Read(./.ssh/**)",
+      "Read(./**/id_rsa)",
+      "Read(./**/id_ed25519)",
+      "Read(./node_modules/**)",
+      "Read(./**/node_modules/**)",
+      "Read(./dist/**)",
+      "Read(./**/dist/**)",
+      "Read(./build/**)",
+      "Read(./**/build/**)",
+      "Read(./.next/**)",
+      "Read(./**/.next/**)",
+      "Read(./coverage/**)",
+      "Read(./**/coverage/**)",
+      "Bash(rm -rf *)",
+      "Bash(sudo rm *)",
+      "Bash(chmod -R 777 *)",
+      "Bash(chown -R *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -fd *)",
+      "Bash(git clean -xfd *)",
+      "Bash(curl * | sh *)",
+      "Bash(wget * | sh *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "codegraph prompt-hook"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "code-simplifier@claude-plugins-official": true,
+    "impeccable@impeccable": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    }
+  },
+  "tui": "fullscreen",
+  "theme": "auto",
+  "editorMode": "normal",
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "effortLevel": "xhigh"
+}
