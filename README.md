@@ -20,6 +20,11 @@ Secrets are encrypted with [age](https://age-encryption.org/) — this repo is s
 | GPG agent | `.gnupg/gpg-agent.conf` |
 | SSH keys | `.ssh/` (private key encrypted) |
 | Homebrew | `.Brewfile` |
+| Claude Code | `.claude/` |
+| Codex CLI | `.codex/` |
+| OpenCode | `.config/opencode/` |
+| Shared AI config | `.config/ai/` |
+| Agent skills | `.agents/` |
 
 ## New machine setup
 
@@ -66,3 +71,27 @@ brew bundle --global
 - Open Neovim — Lazy will install all plugins on first launch
 - Grant Accessibility permission to `skhd` in System Settings > Privacy & Security
 - Install tmux plugins: `prefix + I` (capital i) inside tmux
+
+## Maintenance
+
+### Sync local changes back to the source repo
+
+```sh
+chezmoi status
+chezmoi diff
+chezmoi add ~/.claude ~/.codex ~/.config/opencode ~/.agents ~/.Brewfile
+```
+
+Review the diff before committing. Do not commit generated runtime files, temporary plans, specs, or secrets that were not intentionally managed.
+
+### Homebrew
+
+```sh
+brew update
+brew bundle install --global --upgrade
+brew bundle check --global --verbose
+brew outdated
+brew doctor
+```
+
+If `brew doctor` reports an obsolete or disabled cask, remove or replace it instead of keeping it in `.Brewfile`.
