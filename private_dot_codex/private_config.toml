@@ -3,6 +3,7 @@ model_provider = "azure"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
 approvals_reviewer = "user"
+commit_attribution = ""
 
 [mcp_servers.context7]
 url = "https://mcp.context7.com/mcp"
@@ -43,7 +44,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [tui.model_availability_nux]
-"gpt-5.5" = 3
+"gpt-5.5" = 4
 "gpt-5.6-sol" = 4
 
 [hooks.state]
