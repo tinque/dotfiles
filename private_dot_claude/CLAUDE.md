@@ -55,6 +55,18 @@ This includes:
 
 Conversation language may vary, but repository content must always remain English.
 
+## Claude Code Settings and Hooks
+
+Global `~/.claude/settings.json` is the source of runtime safety defaults. Keep it synchronized through chezmoi whenever it changes.
+
+Security and workflow guardrails:
+
+- `permissions.deny` is intentional and must remain stricter than convenience defaults.
+- Do not bypass protections for `.env`, secret directories, generated build output, destructive shell commands, or force-push operations.
+- The `UserPromptSubmit` hook runs `codegraph prompt-hook` to inject codebase context when available.
+- The `PreToolUse` Bash hook runs `rtk hook claude` to optimize shell output and reduce token usage.
+- If a hook blocks an action, treat it as a safety signal; prefer a narrower, safer command rather than disabling the hook.
+
 ## Scope
 
 This is a global Claude Code configuration file.
