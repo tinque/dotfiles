@@ -96,8 +96,12 @@ gsync() {
   git pull --ff-only || return 1
 }
 
+# >>> opencode-agent-tmux >>>
+export OPENCODE_PORT=4096
+alias opencode='opencode-tmux'
+# <<< opencode-agent-tmux <<<
+
 # >>> opentmux >>>
 export OPENCODE_PORT=4096
 alias opencode='opentmux'
 # <<< opentmux <<<
-export PATH="/opt/homebrew/opt/pnpm@10/bin:$PATH"
