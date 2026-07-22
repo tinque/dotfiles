@@ -95,11 +95,11 @@
       }
     }
   },
+  "effortLevel": "xhigh",
   "tui": "fullscreen",
   "theme": "auto",
   "editorMode": "normal",
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "effortLevel": "xhigh"
+  "agentPushNotifEnabled": true
 }
