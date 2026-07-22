@@ -43,6 +43,12 @@ trust_level = "trusted"
 [projects."/Users/quentin/alk-innovations/trupeo"]
 trust_level = "trusted"
 
+[projects."/Users/quentin/assilva/nathan/Data Catalogue & Documentation V1"]
+trust_level = "trusted"
+
+[projects."/Users/quentin/assilva/papyrus"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
@@ -54,6 +60,9 @@ trusted_hash = "sha256:aa2acf4e03caf6961423c564117a5b5ab7a6230793c989b30abdff711
 
 [notice]
 hide_full_access_warning = true
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.create_pull_request"]
+approval_mode = "approve"
 
 [mcp_servers.codegraph]
 command = "codegraph"
