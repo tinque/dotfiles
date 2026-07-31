@@ -36,4 +36,4 @@ if [ -z "${GITHUB_MCP_TOKEN:-}" ] && github_token_file=$(secret_file github_mcp_
   export GITHUB_MCP_TOKEN
 fi
 
-exec codex "$@"
+exec codex --profile azure "$@"
