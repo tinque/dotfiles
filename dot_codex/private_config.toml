@@ -1,9 +1,12 @@
-model = "gpt-5.6-sol"
-model_provider = "azure"
+model_provider = "openai"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
 approvals_reviewer = "user"
 commit_attribution = ""
+
+notify = ["/Users/quentin/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+sandbox_mode = "workspace-write"
+service_tier = "default"
 
 [mcp_servers.context7]
 url = "https://mcp.context7.com/mcp"
@@ -37,6 +40,45 @@ enabled = false
 [plugins."google-contacts@openai-curated-remote"]
 enabled = false
 
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."code-simplifier@claude-plugins-official"]
+enabled = true
+
+[plugins."typescript-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."impeccable@impeccable"]
+enabled = true
+
+[plugins."superpowers@superpowers-marketplace"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
 [projects."/Users/quentin"]
 trust_level = "trusted"
 
@@ -48,6 +90,16 @@ trust_level = "trusted"
 
 [projects."/Users/quentin/assilva/papyrus"]
 trust_level = "trusted"
+
+[projects."/Users/quentin/assilva/sketch"]
+trust_level = "trusted"
+
+[projects."/Users/quentin/assilva/website"]
+trust_level = "trusted"
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "reasoning", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "permissions", "approval-mode", "context-used", "context-window-size", "used-tokens", "fast-mode", "task-progress"]
+status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
@@ -64,6 +116,83 @@ hide_full_access_warning = true
 [apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.create_pull_request"]
 approval_mode = "approve"
 
+[features]
+memories = true
+prevent_idle_sleep = true
+js_repl = false
+
+[desktop]
+followUpQueueMode = "queue"
+dock-icon-preference = "codex-system"
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
+conversationDetailMode = "STEPS_PROSE"
+ambient-suggestions-enabled = false
+
+[desktop.open-in-target-preferences]
+global = "vscode"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-07-24T09:55:46Z"
+source_type = "local"
+source = "/Users/quentin/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-07-24T08:34:36Z"
+source_type = "local"
+source = "/Users/quentin/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.claude-plugins-official]
+last_updated = "2026-07-27T14:36:53Z"
+last_revision = "e5635ad1f03874dbe6862f8b56f8873b8d4035dc"
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[marketplaces.impeccable]
+last_updated = "2026-07-27T14:37:05Z"
+last_revision = "5e572c8b8af3e108ab52ce4180adb4d6eb1c2ebc"
+source_type = "git"
+source = "https://github.com/pbakaus/impeccable.git"
+
+[marketplaces.superpowers-marketplace]
+last_updated = "2026-07-24T08:52:28Z"
+last_revision = "e4b6482d74109bef66e55660784b4d628acc83c6"
+source_type = "git"
+source = "https://github.com/obra/superpowers-marketplace.git"
+
+[shell_environment_policy.set]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "3fdfe9a7ad39456da69c5e8fa7bbf7229ec2fe9de5f4cf2e476166bf30a08a7e,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/quentin/.codex"
+
+[sandbox_workspace_write]
+network_access = true
+
 [mcp_servers.codegraph]
 command = "codegraph"
 args = ["serve", "--mcp"]
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/quentin/.codex"
+CODEX_HOME = "/Users/quentin/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "3fdfe9a7ad39456da69c5e8fa7bbf7229ec2fe9de5f4cf2e476166bf30a08a7e,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.31836"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
