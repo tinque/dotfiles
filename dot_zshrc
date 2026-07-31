@@ -69,6 +69,7 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # ── Editor ──────────────────────────────────────────────
 export EDITOR="nvim"
+export VISUAL="nvim"
 
 # ── Plugins (must be last) ──────────────────────────────
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
