@@ -20,11 +20,25 @@ Secrets are encrypted with [age](https://age-encryption.org/) — this repo is s
 | GPG agent | `.gnupg/gpg-agent.conf` |
 | SSH keys | `.ssh/` (private key encrypted) |
 | Homebrew | `.Brewfile` |
-| Claude Code | `.claude/` |
+| Claude Code | `.claude-alk/`, `.claude-assilva/` |
 | Codex CLI | `.codex/` |
 | OpenCode | `.config/opencode/` |
 | Shared AI config | `.config/ai/` |
 | Agent skills | `.agents/` |
+
+## Claude Code profiles
+
+Claude Code uses separate configuration directories for the ALK and Assilva accounts:
+
+```sh
+claude-alk
+claude-assilva
+```
+
+After applying the dotfiles, start a new shell or run `source ~/.zshrc`. On macOS,
+OAuth credentials are stored in Keychain and namespaced by configuration directory,
+so run `claude-alk auth login` and `claude-assilva auth login` once on a new machine
+or after migrating from the default `~/.claude` directory.
 
 ## New machine setup
 
@@ -79,7 +93,9 @@ brew bundle --global
 ```sh
 chezmoi status
 chezmoi diff
-chezmoi add ~/.claude ~/.codex ~/.config/opencode ~/.agents ~/.Brewfile
+chezmoi add ~/.claude-alk/{CLAUDE.md,RTK.md,settings.json} \
+  ~/.claude-assilva/{CLAUDE.md,RTK.md,settings.json} \
+  ~/.codex ~/.config/opencode ~/.agents ~/.Brewfile
 ```
 
 Review the diff before committing. Do not commit generated runtime files, temporary plans, specs, or secrets that were not intentionally managed.
