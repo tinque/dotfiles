@@ -79,6 +79,9 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(starship init zsh)"
 
 # ── Aliases ─────────────────────────────────────────────
+alias claude-alk='CLAUDE_CONFIG_DIR="$HOME/.claude-alk" command claude'
+alias claude-assilva='CLAUDE_CONFIG_DIR="$HOME/.claude-assilva" command claude'
+
 gbgD() {
   git fetch -p || return 1
   git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -D
