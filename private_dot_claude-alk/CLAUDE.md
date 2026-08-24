@@ -57,7 +57,7 @@ Conversation language may vary, but repository content must always remain Englis
 
 ## Claude Code Settings and Hooks
 
-Global `~/.claude/settings.json` is the source of runtime safety defaults. Keep it synchronized through chezmoi whenever it changes.
+Global `$CLAUDE_CONFIG_DIR/settings.json` is the source of runtime safety defaults. Keep it synchronized through chezmoi whenever it changes.
 
 Security and workflow guardrails:
 
