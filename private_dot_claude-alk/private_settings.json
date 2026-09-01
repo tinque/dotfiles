@@ -80,7 +80,7 @@
   },
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
-    "code-simplifier@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": false,
     "impeccable@impeccable": true,
     "typescript-lsp@claude-plugins-official": true
   },
@@ -95,7 +95,8 @@
       "source": {
         "source": "github",
         "repo": "pbakaus/impeccable"
-      }
+      },
+      "autoUpdate": true
     }
   },
   "language": "Français",
