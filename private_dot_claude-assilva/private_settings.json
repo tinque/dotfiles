@@ -111,5 +111,39 @@
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(az * prod*:*) — az CLI writes/deploys targeting prod-named resource groups, container apps, or cognitive services in assilva-ai/platform infra",
+      "Bash(tofu apply:*) in infra/environments/prod — OpenTofu apply against the prod environment directory"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: assilva-ai (GitHub org; repo `assilva-ai/platform`)",
+      "**Cloud provider(s)**: Azure (Azure Foundry/OpenAI, Azure Container Apps, Azure Container Registry, Azure Blob storage, Azure Key Vault, Entra ID/OIDC)",
+      "**Repository visibility**: internal (assilva-ai/platform, per gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: Azure Key Vault / GitHub OIDC federated managed identities for CI (no long-lived Azure client secrets); CI secret `AZURE_STATIC_WEB_APPS_API_TOKEN` referenced in workflows",
+      "**Default / protected branches**: `main` (default); ruleset-protected — `protected` and `release-tags` rulesets active on assilva-ai/platform (branch protection API lists `main` explicitly; rulesets provide additional non-classic protection)",
+      "**CI/CD deploy targets**: GitHub Actions workflows `deploy-prod.yml`, `infra-apply-prod.yml`, `promote-to-prod.yml` deploying to Azure staging/production (Container Apps, Static Web Apps) for assilva-ai/platform; `main` auto-deploys to staging, `promote-to-prod` (workflow_dispatch only) promotes to production",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: The trusted repo (assilva-ai/platform) and its origin remote only",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: cognitiveservices.azure.com (Azure Foundry AI endpoint, contacted in this project's transcripts)",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `.env`, `.env.*` (excluding `.env.example`), infra `terraform.tfvars` files (`infra/environments/{local,staging,prod}/terraform.tfvars`, `infra/bootstrap/terraform.tfvars`) and their `.terraform.lock.hcl`/state; PostgreSQL database (private, VNet-only, no public endpoint) — share only with audiences cleared for Assilva platform infra/secrets access",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any host/namespace/container containing `prod` or `production` as a whole segment — includes k8s/Container Apps namespaces `ca-assilva-platform-api-prod`, `cog-assilva-platform-prod`, and Azure production resources under `infra/environments/prod/`",
+      "**Protected deployment namespaces / environments**: `ca-assilva-platform-api-prod`, `cog-assilva-platform-prod` (Container Apps/Cognitive Services prod namespaces seen in this project's usage); GitHub `prod` environment; staging namespaces (`ca-assilva-platform-api-staging`, `cog-assilva-platform-staging`, `cae-assilva-platform-staging`, `swa-assilva-platform-staging`) are lower-risk but still shared infra, not local",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything under `infra/environments/prod/`, `infra/backend/prod.hcl`, or tagged `prod`/`production`; the OpenTofu state storage account (`rg-platform-tfstate` / `stplatformtf85aa9d02`) and shared `assilva-ai/infra`-owned DNS zone/subscription governance (referenced only, not owned here)",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development on assilva-ai/platform (pnpm/Turborepo TypeScript monorepo)",
+      "**Trusted repo**: /Users/quentin/assilva/platform (origin: github.com:assilva-ai/platform.git, internal visibility) — confidential material (secrets, credentials) is never cleared into it by visibility alone",
+      "**Org-specific CLIs**: `az` (Azure CLI), `tofu` (OpenTofu), `gh` (GitHub CLI), `colima` (Docker runtime for Testcontainers on non-default socket)",
+      "Git history mutation (`commit`, `push`, `rebase`, `merge`, `branch`, `tag`, opening PRs) requires explicit user request per global CLAUDE.md — treat as routine-blocked by default, not auto-approved"
+    ]
+  },
   "voiceEnabled": true
 }
