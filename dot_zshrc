@@ -109,3 +109,5 @@ alias opencode='opencode-tmux'
 export OPENCODE_PORT=4096
 alias opencode='opentmux'
 # <<< opentmux <<<
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
