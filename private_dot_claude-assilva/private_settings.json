@@ -30,8 +30,6 @@
       "Read(./**/id_ed25519)",
       "Read(./node_modules/**)",
       "Read(./**/node_modules/**)",
-      "Read(./dist/**)",
-      "Read(./**/dist/**)",
       "Read(./build/**)",
       "Read(./**/build/**)",
       "Read(./.next/**)",
@@ -82,7 +80,8 @@
     "superpowers@superpowers-marketplace": true,
     "code-simplifier@claude-plugins-official": true,
     "impeccable@impeccable": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "posthog@anthropic-plugin-directory": true
   },
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
