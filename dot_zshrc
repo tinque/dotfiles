@@ -82,15 +82,8 @@ eval "$(starship init zsh)"
 alias claude-alk='CLAUDE_CONFIG_DIR="$HOME/.claude-alk" command claude'
 alias claude-assilva='CLAUDE_CONFIG_DIR="$HOME/.claude-assilva" command claude'
 
-gbgD() {
-  git fetch -p || return 1
-  git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -D
-}
-
-gbgd() {
-  git fetch -p || return 1
-  git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -d
-}
+# gbgD, gbgd, gwtclean, gclean
+[ -f "$HOME/.config/zsh/git-cleanup.zsh" ] && source "$HOME/.config/zsh/git-cleanup.zsh"
 
 gsync() {
   local branch="${1:-main}"
