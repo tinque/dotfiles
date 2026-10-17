@@ -39,10 +39,13 @@ _gc_run() {
   fi
 }
 
-# Remove Docker containers created from a directory (compose working_dir label
-# under $1), plus networks and volumes of compose projects left without containers.
+# Remove Docker containers created from a worktree directory (compose working_dir
+# label under $1) with their anonymous volumes, plus networks of compose projects
+# left without containers, and named volumes of the worktree's own project.
 _gc_docker_clean() {
-  local dir=$1 main_project=$2
+  local dir=$1
+  # Default compose project name of the worktree: its directory name, normalized.
+  local wt_project=${${(L)dir:t}//[^a-z0-9_-]/}
   command -v docker >/dev/null && docker info >/dev/null 2>&1 || return 0
 
   local -a ids projects
@@ -55,7 +58,7 @@ _gc_docker_clean() {
 
   (( ${#ids} )) || return 0
   print -r -- "  docker: removing ${#ids} container(s)"
-  _gc_run docker rm -f "${ids[@]}" >/dev/null
+  _gc_run docker rm -f -v "${ids[@]}" >/dev/null
 
   for project in ${(u)projects}; do
     # The project is shared with another checkout (e.g. a fixed "-p" name): keep its resources.
@@ -65,8 +68,9 @@ _gc_docker_clean() {
     local -a nets vols
     nets=(${(f)"$(docker network ls -q --filter "label=com.docker.compose.project=$project")"})
     (( ${#nets} )) && _gc_run docker network rm "${nets[@]}" >/dev/null
-    # Never drop the main checkout's volumes (its data survives "compose down").
-    [[ $project == "$main_project" ]] && continue
+    # Only drop named volumes of a project owned by this worktree: a fixed "-p" name
+    # may be shared with the main checkout, whose data must survive "compose down".
+    [[ $project == "$wt_project" ]] || continue
     vols=(${(f)"$(docker volume ls -q --filter "label=com.docker.compose.project=$project")"})
     if (( ${#vols} )); then
       print -r -- "  docker: removing ${#vols} volume(s) of project $project"
@@ -101,7 +105,6 @@ gwtclean() {
   default_ref=$(cd "$main_wt" && _gc_default_ref)
   [[ -n $default_ref ]] || { print -u2 "gwtclean: cannot resolve origin default branch"; return 1; }
   current_wt=$(git rev-parse --show-toplevel)
-  local main_project=${${main_wt:t}:l}
 
   local -a paths heads branches locks
   local line wt="" head="" branch="" locked=""
@@ -148,7 +151,7 @@ gwtclean() {
     fi
 
     print -r -- "clean $label ($reason) -> $wt"
-    _gc_docker_clean "$wt" "$main_project"
+    _gc_docker_clean "$wt"
     if (( force )); then
       _gc_run git -C "$main_wt" worktree remove --force --force "$wt"
     else
@@ -210,7 +213,7 @@ gclean() {
     for wd in ${(u)${(f)"$(docker ps -a --format '{{.Label "com.docker.compose.project.working_dir"}}')"}}; do
       [[ $wd == "$main_wt"/* && ! -d $wd ]] || continue
       print -r -- "orphan $wd"
-      _gc_docker_clean "$wd" "${${main_wt:t}:l}"
+      _gc_docker_clean "$wd"
     done
   fi
 
