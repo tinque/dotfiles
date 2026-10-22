@@ -1,28 +1,29 @@
 # Global rules
 
-## Git Safety Rules
+## Git Delivery Workflow
 
-The agent MUST NOT perform any Git history mutation without explicit user request.
+A request to implement or change code is itself authorization to create a task branch, commit the requested changes, push that branch, and open a pull request. Do not ask for separate confirmation for those routine delivery steps when the conditions below are met.
 
-Prohibited by default:
+This standing authorization applies only to Git repositories under `/Users/quentin/alk-innovations`. Outside that root, do not mutate Git history or create remote resources unless the user explicitly requests it.
 
-- `git commit`
-- `git push`
-- `git rebase`
-- `git merge`
-- `git branch`
-- `git tag`
-- opening pull requests
+For implementation work:
 
-These actions require explicit user confirmation.
+1. Inspect the worktree status, current branch, remote, default branch, and repository-specific instructions before editing.
+2. Continue a suitable existing task branch or pull request when one exists. Otherwise, update remote refs and create a descriptively named task branch from the latest `origin/main`. Prefer an isolated worktree when unrelated work is present or another task may be in progress.
+3. Never stash, reset, overwrite, or include pre-existing user changes. If they cannot be protected through isolation, stop and ask the user.
+4. Implement the requested scope, run the repository's required checks, and review the final diff.
+5. Stage only task-related files and create focused English commit(s), following repository conventions.
+6. Push the task branch and open a pull request targeting `main`. Follow the repository's pull-request template and conventions. Open a ready-for-review PR when the work is complete and checks pass; use a draft PR when the work is intentionally incomplete or blocked.
+7. Report the branch, commit(s), checks run, and pull-request URL.
 
-If code changes are made:
+For read-only requests such as analysis, explanation, audit, or review, do not create a branch, commit, push, or pull request. If the user explicitly asks for a patch without delivery or specifies another workflow, follow that request.
 
-1. Apply the modifications
-2. Present a clear summary or diff
-3. Wait for the user to request a commit
+Safety boundaries:
 
-Never assume a commit is desired.
+- Never commit or push directly to `main`.
+- Never force-push or rewrite published history.
+- Never merge or close a pull request, delete a branch or worktree, create or delete a tag or release, deploy, or mutate shared/production infrastructure without an explicit user request.
+- Never bypass repository hooks, required checks, branch protections, or review requirements.
 
 ## Planning and Specification Artifacts
 
