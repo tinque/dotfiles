@@ -119,15 +119,38 @@ trust_level = "trusted"
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "reasoning", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "permissions", "approval-mode", "context-used", "context-window-size", "used-tokens", "fast-mode", "task-progress"]
 status_line_use_colors = true
+screen_reader_detection_done = true
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+"gpt-6.1-sol" = 1
 
 [hooks.state]
 
 [hooks.state."/Users/quentin/alk-innovations/trupeo/.codex/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:aa2acf4e03caf6961423c564117a5b5ab7a6230793c989b30abdff711ae9e718"
+
+[hooks.state."/Users/quentin/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:611801ec2e3d969b804521d5f231f6581b43d6af10a5b6406fab874286644e3b"
+
+[hooks.state."/Users/quentin/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:be5a2f37ab8a8e51b7891874ba07d16a10f9613186ef364e9d11532a37ad2e90"
+
+[hooks.state."/Users/quentin/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:68d1e4dad787c0bb93dc47dfdfdc30745ff37ab5c11573511157ef9f45fe99e8"
+
+[hooks.state."/Users/quentin/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:d05c9a06817388c4b6c8b0814f62854df9281d02dda5a4547f989cdf281ab31b"
+
+[hooks.state."impeccable@impeccable:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:7c21510c97aef3035a77f380e84d716fbe7a25a289be3c57463eb5e2b1f4da69"
+
+[hooks.state."impeccable@impeccable:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:47ed9a201ee361838e67c9a943430eee1f1c2694b9b239ce7a4b8eb3c0876c21"
+
+[hooks.state."impeccable@impeccable:hooks/hooks.json:stop:0:0"]
+trusted_hash = "sha256:5e32e42c9a09a82fa89fe0a2bdd7d391207d01b8159a57080f8df5fdc5ee93bf"
 
 [notice]
 hide_full_access_warning = true
