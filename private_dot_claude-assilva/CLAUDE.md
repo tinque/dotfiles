@@ -96,6 +96,10 @@ Issues in every ALK repo are implemented with the generic `/alk:work-issue`
 issue shape, check command, traps) lives in that repo's `.claude/work-issue.md`
 profile, not in a per-repo copy of the skill. The same pattern holds for user
 reports: `/alk:user-feedback`, with specifics in `.claude/user-feedback.md`.
+Ideas go through `/alk:idea` (discussion, issues, scenarios, one go, then the
+factory). Acceptance scenarios live in each repo's `scenarios/*.md`, are written
+with the user through `/alk:scenarios`, played by the `scenario-judge` agent,
+and never edited by a worker.
 
 New custom skills go into the matching plugin, never loose in `.claude/skills/`.
 

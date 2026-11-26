@@ -111,6 +111,10 @@ steps: use a task list.
 - **Schema change**: re-read the manual's migration rules first, generate the
   migration with the repo's generator, read every statement, apply it to this
   worktree's database only.
+- **`scenarios/` belongs to the user.** Read the scenarios the issue names:
+  they say what "done" looks like to a person, and an independent judge will
+  play them in a browser before the merge. Never edit them; one that looks wrong
+  is a question for the report, not a fix.
 - **A bug fix starts with a failing test** that reproduces it, when the layer
   can be tested.
 

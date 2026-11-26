@@ -17,7 +17,8 @@ and ask only for a decision that is genuinely the user's, with options.
 ## 1. Pick the issues
 
 `$ARGUMENTS` holds issue numbers, or `label:<name>` (default `label:ready`), and
-optionally `max:<n>` for the number of workers running at once (default 3).
+optionally `max:<n>` for the number of workers running at once (default 3) and
+`models:<n>=opus,<m>=sonnet` (as `/alk:idea` passes them).
 
 ```bash
 gh issue list --label <name> --state open --json number,title,labels,body --limit 50
@@ -45,7 +46,11 @@ approval.
 
 ## 3. Dispatch the workers
 
-One `Agent` per issue, `isolation: "worktree"`, `run_in_background: true`. The
+One `Agent` per issue, `isolation: "worktree"`, `run_in_background: true`, and
+a `model` per issue: the one given in `models:`, else `sonnet`, raised to `opus`
+when the issue carries a migration, money, auth, permissions, concurrency or a
+cross-cutting change. The coordinator (this session) keeps planning, review and
+merge decisions. The
 prompt is a brief that starts with `Context:` (that marks it as dispatched, so
 the worker leaves the merge to you) and carries:
 
@@ -67,12 +72,23 @@ Take finished pull requests in wave order. For each one:
    (`gh pr update-branch <n> --rebase` or in its worktree). If another PR of this
    batch touching the same area merged since it was cut, rerun the repo's full
    check command in its worktree before going further.
-3. Run the `code-review` skill on the PR at `medium` (`high` for billing, auth,
+3. **Scenarios are the user's, not the worker's**: if the PR's diff touches
+   `scenarios/` (`gh pr diff <n> --name-only`), send it back unless the issue
+   is itself about scenarios.
+4. **Acceptance**: when the issue's Done when names scenarios (or the repo has
+   active scenarios for the area it touches), start the app in the PR's
+   worktree as its `.claude/work-issue.md` says, and dispatch the
+   `scenario-judge` agent (background, it never sees the diff) with the
+   worktree path, base URL(s) and scenario ids. A `FAIL` goes back to the
+   worker with the judge's report verbatim, then this step reruns. `BLOCKED` on
+   an ambiguous scenario is a question for the user, not a reason to merge.
+   Stop the app afterwards.
+5. Run the `code-review` skill on the PR at `medium` (`high` for billing, auth,
    migrations, data deletion, infra or deploy config). Fix real findings in the
    PR's worktree, rerun the checks, push.
-4. Wait for green CI with a background `rtk proxy gh pr checks <n> --watch`
+6. Wait for green CI with a background `rtk proxy gh pr checks <n> --watch`
    (a bare `gh … --watch` returns at once under the rtk hook; never a `sleep` loop), mark the PR ready, `gh pr merge <n> --squash --delete-branch`.
-5. Watch `main`'s CI and the deploy run that follows until they finish. If
+7. Watch `main`'s CI and the deploy run that follows until they finish. If
    either fails, stop merging, fix forward (or revert the merge commit through a
    new PR when the fix is not obvious), and only then continue.
 
