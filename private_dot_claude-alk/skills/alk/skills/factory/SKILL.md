@@ -6,11 +6,10 @@ description: Use when the user wants several GitHub issues of an ALK repo shippe
 # Run a batch of issues through the factory
 
 You are the coordinating session. Workers implement; you plan, dispatch, merge
-and report. The repo's own `work-issue` skill (`/<repo-prefix>:work-issue`) is
-what each worker runs: read it first, because its isolation steps (worktree,
-own database, `/usr/bin/git`) and its validation command are the contract every
-worker follows, and its boundaries say a dispatched worker leaves the merge to
-you.
+and report. Each worker runs `/alk:work-issue`, which reads the repo's work-issue profile
+(`.claude/work-issue.md`). Read both first: the profile's setup, isolation check
+and check command are the contract every worker follows, and the skill's
+section 6 says a dispatched worker leaves the merge to you.
 
 Under the global Autonomy Contract you merge and deploy without asking. Stop
 and ask only for a decision that is genuinely the user's, with options.
@@ -50,7 +49,7 @@ One `Agent` per issue, `isolation: "worktree"`, `run_in_background: true`. The
 prompt is a brief that starts with `Context:` (that marks it as dispatched, so
 the worker leaves the merge to you) and carries:
 
-- `/<repo-prefix>:work-issue <N>` as the instruction,
+- `/alk:work-issue <N>` as the instruction,
 - what you learned while planning that the issue does not say (neighbouring
   issues in flight and the files they own, so the worker stays out of them),
 - the reminder to stop and report rather than guess if the issue turns out to
