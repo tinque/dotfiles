@@ -94,7 +94,8 @@ Custom skills are grouped into skills-directory plugins so they show up as
 Issues in every ALK repo are implemented with the generic `/alk:work-issue`
 (batches with `/alk:factory`). What differs per repo (setup, isolation check,
 issue shape, check command, traps) lives in that repo's `.claude/work-issue.md`
-profile, not in a per-repo copy of the skill.
+profile, not in a per-repo copy of the skill. The same pattern holds for user
+reports: `/alk:user-feedback`, with specifics in `.claude/user-feedback.md`.
 
 New custom skills go into the matching plugin, never loose in `.claude/skills/`.
 
