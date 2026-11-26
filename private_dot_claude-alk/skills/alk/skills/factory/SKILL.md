@@ -1,6 +1,6 @@
 ---
 name: factory
-description: Use when the user wants several GitHub issues of an ALK repo shipped in one go (e.g. "/alk:factory 512 518 530", "/alk:factory label:ready", « traite toutes les issues ready », « vide le backlog », « lance la factory »). Plans which issues can run side by side, dispatches one worktree-isolated worker per issue through the repo's own work-issue skill, then reviews and merges the pull requests one at a time while watching main's CI and deploy.
+description: Use when the user wants several GitHub issues of an ALK repo shipped in one go (e.g. "/alk:factory 512 518 530", "/alk:factory label:ready", « traite toutes les issues ready », « vide le backlog », « lance la factory »). Plans which issues can run side by side, dispatches one worktree-isolated worker per issue running /alk:work-issue (with the repo's .claude/work-issue.md profile), then reviews and merges the pull requests one at a time while watching main's CI and deploy.
 ---
 
 # Run a batch of issues through the factory
