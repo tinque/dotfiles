@@ -1,28 +1,52 @@
 # Global rules
 
-## Git Safety Rules
+## Autonomy Contract
 
-The agent MUST NOT perform any Git history mutation without explicit user request.
+The user does not review code. Work in full autonomy, end to end, by default:
+branch, commit, push, open the PR, review it automatically, fix, wait for green CI,
+merge, and deploy through the project's normal deploy path (production included).
+Do not ask permission for any of these steps.
 
-Prohibited by default:
+Two exceptions:
 
-- `git commit`
-- `git push`
-- `git rebase`
-- `git merge`
-- `git branch`
-- `git tag`
-- opening pull requests
+1. **"Test locally first."** When the user asks to test before merging ("je veux
+   tester en local", "attends avant de merger", "laisse-moi tester"), stop once the
+   PR is open and the change runs locally. Give the URL or steps to try it, then
+   merge only after their go. This applies to that piece of work only.
+2. **Blocking questions.** Ask only about decisions that are genuinely the user's
+   (product choice, irreversible external effect, missing access). Group them in one
+   message; give each 2-4 concrete options with a recommended one first. Once they
+   answer, go back to full autonomy without asking again.
 
-These actions require explicit user confirmation.
+Never, even in autonomy:
 
-If code changes are made:
+- Commit on the local `main` of a primary checkout: other sessions share it. Work in a
+  worktree (`claude -w`, `EnterWorktree`) and check the branch and `git status` before
+  every commit.
+- Force-push, `git reset --hard`, `git stash` (the stash is shared across worktrees),
+  rewrite pushed history, or delete branches you did not create.
+- Merge with red or pending CI, skip or weaken a failing test to get green, or pass
+  `--no-verify`.
+- Poll CI with `sleep` loops. Watch it with a background
+  `rtk proxy gh pr checks <n> --watch` (the `rtk` hook rewrites a bare `gh … --watch`
+  so that it returns at once) or with `Monitor`, and react when it finishes.
 
-1. Apply the modifications
-2. Present a clear summary or diff
-3. Wait for the user to request a commit
+## Quality Gate (replaces human code review)
 
-Never assume a commit is desired.
+Before merging, every change must pass:
+
+1. The project's full check command (tests, typecheck, lint, build), run fresh, with
+   its output read: no success claim without that evidence.
+2. An automated review of the PR diff with the `code-review` skill (level `medium`;
+   `high` when the diff touches billing, payments, auth, permissions, database
+   migrations, data deletion, infra or deploy config). Fix the real findings, rerun
+   the checks, then merge.
+3. For UI changes, look at the result in the browser (screenshot) before merging.
+
+When a merged change comes back as a bug, add a regression test for it in the fix.
+
+End every piece of work with a short report in the conversation language: what
+shipped (PR links), where it is deployed, what was verified and how, what is left.
 
 ## Planning and Specification Artifacts
 
@@ -54,6 +78,20 @@ This includes:
 - design documents
 
 Conversation language may vary, but repository content must always remain English.
+Talk to the user in French, including right after a context compaction.
+
+## Custom Skills Layout
+
+Custom skills are grouped into skills-directory plugins so they show up as
+`/<prefix>:<skill>`:
+
+- Generic ALK skills (any ALK repo): `~/.claude-alk/skills/alk/skills/<skill>/SKILL.md`
+  (`/alk:…`).
+- Project skills: `<repo>/.claude/skills/<prefix>/skills/<skill>/SKILL.md`, with
+  `<repo>/.claude/skills/<prefix>/.claude-plugin/plugin.json` naming the prefix
+  (`trupeo`, `prospection`, `finance`, `crenomi`, `assilva`).
+
+New custom skills go into the matching plugin, never loose in `.claude/skills/`.
 
 ## Claude Code Settings and Hooks
 

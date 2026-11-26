@@ -53,7 +53,16 @@
       "Read(./**/.next/**)",
       "Read(./coverage/**)",
       "Read(./**/coverage/**)",
-      "Bash(rm -rf *)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf $HOME*)",
+      "Bash(rm -rf .)",
+      "Bash(rm -rf ./)",
+      "Bash(rm -rf ..*)",
+      "Bash(rm -rf *.git)",
+      "Bash(rm -rf .git*)",
       "Bash(sudo rm *)",
       "Bash(chmod -R 777 *)",
       "Bash(chown -R *)",
@@ -97,7 +106,8 @@
     "superpowers@superpowers-marketplace": true,
     "code-simplifier@claude-plugins-official": false,
     "impeccable@impeccable": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "openseo@openseo": true
   },
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
@@ -112,10 +122,21 @@
         "repo": "pbakaus/impeccable"
       },
       "autoUpdate": true
+    },
+    "openseo": {
+      "source": {
+        "source": "github",
+        "repo": "every-app/open-seo"
+      }
     }
   },
   "language": "Français",
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
   "tui": "fullscreen",
   "voice": {
     "enabled": true,
@@ -136,29 +157,34 @@
     ],
     "environment": [
       "### Org-wide",
-      "**Organization**: None configured",
-      "**Cloud provider(s)**: None configured",
-      "**Repository visibility**: Private — alk-innovations/nabvia (confirmed via gh)",
+      "**Organization**: alk-innovations (GitHub org, solo founder). Repos: trupeo, crenomi, zibou, alk-innovations (website), finance, trupeo-prospection (all private), trupeo-claude-plugin (public)",
+      "**Cloud provider(s)**: Azure (Container Apps, Static Web Apps, Container Registry, Key Vault, Azure AI Foundry), AWS SES (email), GCP Pub/Sub (Gmail push) — infra managed with OpenTofu under each repo's `deploy/terraform/` or infra workflows",
+      "**Repository visibility**: private except alk-innovations/trupeo-claude-plugin (public marketplace plugin — never commit secrets, customer data or internal notes there)",
       "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
-      "**Secrets management**: None configured",
-      "**Default / protected branches**: Default branch unknown (origin/HEAD unset); no rulesets or protected branches listed via gh for alk-innovations/nabvia",
-      "**CI/CD deploy targets**: None configured",
+      "**Secrets management**: GitHub Actions secrets and OIDC to Azure; local `.env` files (never read, never committed); finance repo keeps encrypted age backups",
+      "**Default / protected branches**: `main` on every repo",
+      "**CI/CD deploy targets**: GitHub Actions `ci.yml` then `deploy.yml` (chained via workflow_run) deploy `main` to production Azure for trupeo, crenomi, zibou and alk-innovations; `terraform.yml`/`infra.yml` apply infra. Merging to `main` after green CI IS the production deploy and is routine under the user's autonomy contract",
       "**Network posture**: None configured",
-      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
-      "**Source control**: The trusted repo (alk-innovations/nabvia) and its remote (github.com:alk-innovations/nabvia.git) only — no additional orgs configured",
-      "**Trusted internal domains**: None configured",
+      "**Host containment**: None configured — Claude Code runs on the founder's own Mac with open internet",
+      "**Source control**: github.com/alk-innovations/* and their origin remotes",
+      "**Trusted internal domains**: trupeo.com, alk-innovations.com",
       "**Trusted cloud buckets**: None configured",
-      "**Key internal services**: None configured",
+      "**Key internal services**: Twenty CRM (MCP), Gmail (MCP), Linear and GitHub issues, Azure Application Insights, Reoon email verification",
       "**Internal package registry**: None configured",
-      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Sensitive data locations & audiences**: production databases and mailboxes (end-user email content), CRM contacts, finance ledgers and bank exports under finance/data/, `.env*` files — personal data stays in its system of record; never paste it into public repos, issues of the public plugin, or third-party services",
       "**Data retention / declassification**: None configured",
-      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited — e.g. matches `prod-db`, not `producer`)",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
-      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "**Sensitive remote targets**: any namespace, host or container whose name carries `prod` or `production` as a whole segment; production Azure resource groups and databases",
+      "**Protected deployment namespaces / environments**: production Azure Container Apps and databases; direct writes to them outside the deploy workflows (manual `az` writes, `tofu apply` from the laptop, manual SQL on prod) need user confirmation",
+      "**Protected IaC scopes**: IAM, RBAC, networking, DNS, quota; anything tagged or named `prod`/`production`",
       "### User-specific",
-      "**Primary use of Claude Code**: software development",
-      "**Trusted repo**: /Users/quentin/alk-innovations/nabvia (working directory) and its remote github.com:alk-innovations/nabvia.git (private) — confidential material OK to commit here; secrets and sensitive personal/entrusted data are never cleared into it by visibility alone",
-      "**Org-specific CLIs**: None configured"
+      "**Primary use of Claude Code**: software development, prospecting (CRM + Gmail drafts; emails are sent only on the user's explicit go), and bookkeeping for ALK Innovations",
+      "**Trusted repos**: /Users/quentin/alk-innovations/* and their origin remotes",
+      "**Org-specific CLIs**: `gh`, `az`, `tofu`, `pnpm`, `uv`, `docker`",
+      "Git workflow: the user does not review code and has granted full autonomy (global CLAUDE.md \"Autonomy Contract\"). Inside a worktree or feature branch, `git commit`, `git push` of that branch, `gh pr create`, `gh pr merge` after green CI, and the project's normal deploy (CI on `main`, deploy workflows) are routine and expected, not blocked. Still blocked: force-push, `git reset --hard`, `git stash`, committing on the local `main` of a primary checkout, rewriting pushed history, deleting branches the session did not create."
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(az * prod*:*) and Bash(tofu apply:*) run from the laptop against production — production infra changes go through the deploy/terraform workflows"
     ]
   },
   "voiceEnabled": true

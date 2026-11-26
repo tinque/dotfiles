@@ -36,7 +36,16 @@
       "Read(./**/.next/**)",
       "Read(./coverage/**)",
       "Read(./**/coverage/**)",
-      "Bash(rm -rf *)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf $HOME*)",
+      "Bash(rm -rf .)",
+      "Bash(rm -rf ./)",
+      "Bash(rm -rf ..*)",
+      "Bash(rm -rf *.git)",
+      "Bash(rm -rf .git*)",
       "Bash(sudo rm *)",
       "Bash(chmod -R 777 *)",
       "Bash(chown -R *)",
@@ -141,7 +150,7 @@
       "**Primary use of Claude Code**: software development on assilva-ai/platform (pnpm/Turborepo TypeScript monorepo)",
       "**Trusted repo**: /Users/quentin/assilva/platform (origin: github.com:assilva-ai/platform.git, internal visibility) — confidential material (secrets, credentials) is never cleared into it by visibility alone",
       "**Org-specific CLIs**: `az` (Azure CLI), `tofu` (OpenTofu), `gh` (GitHub CLI), `colima` (Docker runtime for Testcontainers on non-default socket)",
-      "Git history mutation (`commit`, `push`, `rebase`, `merge`, `branch`, `tag`, opening PRs) requires explicit user request per global CLAUDE.md — treat as routine-blocked by default, not auto-approved"
+      "Git workflow: the user does not review code and has granted full autonomy (global CLAUDE.md \"Autonomy Contract\"). Inside a worktree or feature branch, `git commit`, `git push` of that branch, `gh pr create`, `gh pr merge` after green CI, and the project's normal deploy (CI on `main`, deploy workflows) are routine and expected, not blocked. Still blocked: force-push, `git reset --hard`, `git stash`, committing on the local `main` of a primary checkout, rewriting pushed history, deleting branches the session did not create."
     ]
   },
   "voiceEnabled": true
