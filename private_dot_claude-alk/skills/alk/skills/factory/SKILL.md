@@ -91,6 +91,11 @@ Take finished pull requests in wave order. For each one:
 7. Watch `main`'s CI and the deploy run that follows until they finish. If
    either fails, stop merging, fix forward (or revert the merge commit through a
    new PR when the fix is not obvious), and only then continue.
+8. **Clean up behind the merge**: `/usr/bin/git worktree remove <path>` on the
+   merged PR's worktree (never `--force`: git refuses a dirty one, and a dirty
+   one is a question for the report), then the profile's **After merge** steps
+   (for example dropping the worktree's own database). Local branches of
+   squash-merged PRs stay; `--delete-branch` already removed the remote one.
 
 Start the next wave's workers as soon as the area they depend on has merged.
 
@@ -103,7 +108,8 @@ In French, short:
   checks), with the question and suggested answers when there is one;
 - anything you noticed in passing that deserves its own issue.
 
-Remove the worktrees of merged PRs. A worktree whose PR is still open stays.
+Before reporting, check that no worktree of a merged PR is left (step 8). A
+worktree whose PR is still open stays.
 
 ## Boundaries
 
